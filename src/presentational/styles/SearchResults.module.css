@@ -1,0 +1,8 @@
+.SearchResultsContainer {
+    height: 100%;
+    width: 55%;
+    background-color: rgba(0,0,0,70%);
+    border-radius: 20px;
+    text-align: left;
+    margin: 0 2rem 0 2rem;
+}
