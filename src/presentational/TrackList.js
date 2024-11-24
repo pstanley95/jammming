@@ -7,7 +7,7 @@ export default function TrackList(props) {
     return (
         <div>
             {tracks.map((track) => (
-                <Track songId={track.songId} songName={track.songName} artistName={track.artistName} onClick={onClick}/>
+                <Track songId={track.Id} songName={track.name} artistName={track.artists.map((artist) => artist.name)} onClick={onClick}/>
             ))
             }
         </div>

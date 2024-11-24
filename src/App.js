@@ -1,9 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
 import SearchBar from './presentational/SearchBar';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchResults from './presentational/SearchResults';
 import Playlist from './presentational/Playlist';
+import checkAuthorization from './checkAuthorization';
+import getSpotifyToken from './presentational/getSpotifyToken';
 
 const bodyStyles = {
   display: 'flex', 
@@ -18,19 +20,19 @@ const bodyStyles = {
 
 const sampleTracks = [
   {
-      songId: 0,
-      songName: 'Dazzle',
-      artistName: 'Oh Wonder'
+      Id: 0,
+      name: 'Dazzle',
+      artists: [{name: 'Oh Wonder'}]
   },
   {
-      songId: 1,
-      songName: 'Oceansize',
-      artistName: 'Oh Wonder'
+      Id: 1,
+      name: 'Oceansize',
+      artists: [{name: 'Oh Wonder'}]
   },
   {
-      songId: 2,
-      songName: '22 Make',
-      artistName: 'Oh Wonder'
+      Id: 2,
+      name: '22 Make',
+      artists: [{name: 'Oh Wonder'}]
   }]
 
 function App() {
@@ -44,22 +46,35 @@ function App() {
 
   const addSongToPlaylist = (e) => {
     const songIdToBeAdded = e.target.value;
-    const songToBeAdded = searchResults.find((track) => (track.songId == songIdToBeAdded));
+    const songToBeAdded = searchResults.find((track) => (track.Id == songIdToBeAdded));
     setPlaylist((prev) => ([...prev, songToBeAdded]));
   }
 
   const removeSongFromPlaylist = (e) => {
     const songIdToBeRemoved = e.target.value;
     //const updatedPlaylist = playlist.filter((track) => (track.songId !== songIdToBeRemoved));
-    const updatedPlaylist = playlist.filter((track) => track.songId != songIdToBeRemoved);
+    const updatedPlaylist = playlist.filter((track) => track.Id != songIdToBeRemoved);
     setPlaylist(updatedPlaylist);
+  }
+
+  const [isAuthorized, setIsAuthorized] = useState(false);
+
+  useEffect(() => {
+      // Perform authorization check
+      console.log('Checking authorization...');
+      const token = checkAuthorization();
+      setIsAuthorized(!!token); // Set authorization state
+  }, []);
+
+  if (!isAuthorized) {
+      return <div>Redirecting to Spotify for authorization...</div>;
   }
   
   return (
     <div className="App">
       <header className="App-header">
         <h1 className="App-title">Jammming</h1>
-        <SearchBar onChange={handleChange} value={searchBar}/>
+        <SearchBar onChange={handleChange} value={searchBar} returnSearchResults={setSearchResults}/>
       </header>
       <div style={bodyStyles}>
         <SearchResults searchResults={searchResults} addSongToPlaylist={addSongToPlaylist}/>
