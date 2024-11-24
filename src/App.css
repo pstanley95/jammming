@@ -2,7 +2,7 @@
   text-align: center;
   background-image: url(./resources/thumb-1920-1146320.jpg);
   background-size: cover;
-  background-repeat: no-repeat;
+  background-repeat: repeat-y;
   background-position-x:center;
   min-height: 100vh;
 }

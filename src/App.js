@@ -15,22 +15,22 @@ const bodyStyles = {
   width: '100%',
   marginTop: '3rem',
   paddingBottom: '3rem',
-  height: '80vh'
+  height: '100%'
 }
 
 const sampleTracks = [
   {
-      Id: 0,
+      id: 0,
       name: 'Dazzle',
       artists: [{name: 'Oh Wonder'}]
   },
   {
-      Id: 1,
+      id: 1,
       name: 'Oceansize',
       artists: [{name: 'Oh Wonder'}]
   },
   {
-      Id: 2,
+      id: 2,
       name: '22 Make',
       artists: [{name: 'Oh Wonder'}]
   }]
@@ -46,14 +46,14 @@ function App() {
 
   const addSongToPlaylist = (e) => {
     const songIdToBeAdded = e.target.value;
-    const songToBeAdded = searchResults.find((track) => (track.Id == songIdToBeAdded));
+    const songToBeAdded = searchResults.find((track) => (track.id == songIdToBeAdded));
     setPlaylist((prev) => ([...prev, songToBeAdded]));
   }
 
   const removeSongFromPlaylist = (e) => {
     const songIdToBeRemoved = e.target.value;
     //const updatedPlaylist = playlist.filter((track) => (track.songId !== songIdToBeRemoved));
-    const updatedPlaylist = playlist.filter((track) => track.Id != songIdToBeRemoved);
+    const updatedPlaylist = playlist.filter((track) => track.id != songIdToBeRemoved);
     setPlaylist(updatedPlaylist);
   }
 
