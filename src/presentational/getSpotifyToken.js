@@ -1,6 +1,6 @@
 export default function getSpotifyToken() {
     const client_id = '5172e367541646449173ef783ff1f2f9';
-    const redirect_uri = 'http://localhost:3001/callback';
+    const redirect_uri = 'http://localhost:3001/';
     const stateKey = 'spotify_auth_state';
 
     function generateRandomString(length) {

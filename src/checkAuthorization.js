@@ -13,6 +13,15 @@ export default function checkAuthorization() {
         return accessToken;
     }
 
+    // If token is expired, clear it and trigger reauthentication
+    if (accessToken && Date.now() >= tokenExpiry) {
+        console.log('Token has expired. Clearing token and reauthenticating...');
+        localStorage.removeItem('spotify_access_token');
+        localStorage.removeItem('spotify_token_expiry');
+        getSpotifyToken(); // Redirect to Spotify
+        return null;
+    }
+
     // Check URL for a new token after Spotify redirects
     const hashParams = new URLSearchParams(window.location.hash.substring(1)); // Remove `#`
     const token = hashParams.get('access_token');
