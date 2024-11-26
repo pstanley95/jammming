@@ -14,7 +14,7 @@ export default function Playlist(props) {
     return (
         <div className={styles.PlaylistContainer}>
             <h2 style={titleStyle}>Playlist</h2>
-            <TrackList tracks={playlist} onClick={removeSongFromPlaylist}/>
+            <TrackList tracks={playlist} onClick={removeSongFromPlaylist} text='Delete'/>
         </div>
     )
 }

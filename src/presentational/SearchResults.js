@@ -14,7 +14,7 @@ export default function SearchResults(props) {
     return (
         <div className={styles.SearchResultsContainer}>
             <h2 style={titleStyle}>Results</h2>
-            <TrackList tracks={searchResults} onClick={addSongToPlaylist}/>
+            <TrackList text='Add' tracks={searchResults} onClick={addSongToPlaylist}/>
         </div>
     )
 }

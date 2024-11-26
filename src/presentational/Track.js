@@ -10,7 +10,7 @@ export default function Track(props) {
                 <h3 className={styles.songName}>{songName}</h3>
                 <p>{artistName}</p>
             </div>
-            <button className={styles.AddDeleteBtn} value={songId} onClick={onClick}>Add/delete</button>
+            <button className={styles.AddDeleteBtn} value={songId} onClick={onClick}>{props.text}</button>
         </div>
     )
 }
